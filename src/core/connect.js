@@ -103,7 +103,7 @@ define(function (require, exports, module) {
                 }
             }
 
-            // console.info('nodeStyle====>', node.getParent().getType());
+            console.info('nodeStyle====>', this);
 
             connection.stroke(strokeColor, strokeWidth);
 
