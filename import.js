@@ -23,7 +23,7 @@
         'src/core/readonly.js',
         'src/core/layout.js',
         'src/core/theme.js',
-        
+
         'src/core/compatibility.js',
         'src/core/render.js',
         'src/core/connect.js',
@@ -47,6 +47,7 @@
 
         /* 皮肤 */
         'src/theme/default.js',
+        'src/theme/colourful.js',
         'src/theme/snow.js',
         'src/theme/fresh.js',
         'src/theme/fish.js',
@@ -90,7 +91,7 @@
 
     if (typeof(module) === 'object' && module.exports) {
         module.exports = pathInfo;
-    } 
+    }
 
     else if (document) {
         while (pathInfo.length) {
