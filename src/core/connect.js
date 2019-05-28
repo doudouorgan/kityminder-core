@@ -103,8 +103,6 @@ define(function (require, exports, module) {
                 }
             }
 
-            console.info('nodeStyle====>', this);
-
             connection.stroke(strokeColor, strokeWidth);
 
             provider(node, parent, connection, strokeWidth, strokeColor);
