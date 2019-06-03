@@ -32,19 +32,20 @@
         "root": {
             "data": {
                 "text": "百度产品",
+                "image": "https://www.baidu.com/img/bd_logo1.png?where=super",
                 "imageSize": { "width": 270, "height": 129 }
             },
             "children": [
-                { "data": { "text": "新闻" },"style":{"connect-color": "#FAC6D2","main-connect-width": "10","connect-width": "3"} },
-                { "data": { "text": "网页", "priority": 1},"style":{"connect-color": "#F384AE","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "贴吧", "priority": 2},"style":{"connect-color": "#F15A23","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "知道", "priority": 2},"style":{"connect-color": "#C41230","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "音乐", "priority": 3},"style":{"connect-color": "#7DCDC2","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "图片", "priority": 3},"style":{"connect-color": "#55BEED","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "视频", "priority": 3},"style":{"connect-color": "#0076B3","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "地图", "priority": 3},"style":{"connect-color": "#B296C7","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "百科", "priority": 3},"style":{"connect-color": "#662C90","main-connect-width": "10","connect-width": "3"}},
-                { "data": { "text": "更多", "hyperlink": "http://www.baidu.com/more" },"style":{"connect-color": "#C1D18A","main-connect-width": "10","connect-width": "3"}}
+                { "data": { "text": "新闻" },"style":{"connect-color": "#FAC6D2"} },
+                { "data": { "text": "网页", "priority": 1},"style":{"connect-color": "#F384AE"}},
+                { "data": { "text": "贴吧", "priority": 2},"style":{"connect-color": "#F15A23"}},
+                { "data": { "text": "知道", "priority": 2},"style":{"connect-color": "#C41230"}},
+                { "data": { "text": "音乐", "priority": 3},"style":{"connect-color": "#7DCDC2"}},
+                { "data": { "text": "图片", "priority": 3},"style":{"connect-color": "#55BEED"}},
+                { "data": { "text": "视频", "priority": 3},"style":{"connect-color": "#0076B3"}},
+                { "data": { "text": "地图", "priority": 3},"style":{"connect-color": "#B296C7"}},
+                { "data": { "text": "百科", "priority": 3},"style":{"connect-color": "#662C90"}},
+                { "data": { "text": "更多","hyperlink": "http://www.baidu.com/more" },"style":{"connect-color": "#C1D18A"}}
             ]
         }
     }
@@ -54,16 +55,13 @@
 <!-- *************************** Module 形式加载引入 **************************** -->
 <script type="text/javascript" src="node_modules/seajs/dist/sea-debug.js"></script>
 <script type="text/javascript">
-    var colorArray = ['#FAC6D2', '#F384AE', '#F15A23', '#C41230', '#7DCDC2', '#55BEED', '#31A8E0', '#0076B3', '#B296C7', '#662C90'
-        , '#C1D18A', '#80BC42', '#00A650', '#16884A', '#E9D4A7', '#FDB813', '#F68B1F', '#F1753F', '#9F8759', '#924517', '#CFD0D2'
-        , '#98A2AB', '#8A8B8F', '#381E11'];
-
     /* global seajs */
     seajs.config({
         base: './src'
     });
     define('start', function (require) {
         var Minder = require('kityminder').Minder;
+        var Theme = require('kityminder').theme;
 
         // 创建 km 实例
         var km = window.km = new Minder();

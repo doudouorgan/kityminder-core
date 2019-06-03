@@ -75,7 +75,6 @@ define(function (require, exports, module) {
         },
 
         updateConnect: function (node) {
-
             var connection = node._connection;
             var parent = node.parent;
 
@@ -102,11 +101,10 @@ define(function (require, exports, module) {
                     strokeWidth = nodeStyle['main-connect-width'] || strokeWidth;
                 }
             }
-
             connection.stroke(strokeColor, strokeWidth);
 
-            provider(node, parent, connection, strokeWidth, strokeColor);
 
+            provider(node, parent, connection, strokeWidth, strokeColor);
             if (strokeWidth % 2 === 0) {
                 connection.setTranslate(0.5, 0.5);
             } else {

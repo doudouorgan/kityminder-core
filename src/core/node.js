@@ -227,6 +227,16 @@ define(function (require, exports, module) {
             node.root = this.root;
 
             this.children.splice(index, 0, node);
+            var km = window.km = new Minder();
+            // todo 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
+            var randomColor = km.colorPool[Math.floor(Math.random() * km.colorPool.length)];
+            if (node.getStyle('color-type')) {
+                var json = {};
+                json.data = {'text': node.data.text ? node.data.text : ''};
+                json.style = {'connect-color': randomColor};// 创建 km 实例
+
+                km.importNode(node, json);
+            }
         },
 
         appendChild: function (node) {

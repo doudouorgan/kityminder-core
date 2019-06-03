@@ -102,7 +102,7 @@ define(function(require, exports, module) {
                 'normal.dblclick': function(e) {
                     var shape = e.kityEvent.targetShape
                     if (shape.__KityClassName === 'Image' && shape.url) {
-                        this.viewer.open(shape.url);
+                        // this.viewer.open(shape.url);
                     }
                 }
             }

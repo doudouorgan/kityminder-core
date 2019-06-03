@@ -58,11 +58,16 @@ define(function(require, exports, module) {
             function exportNode(node) {
                 var exported = {};
                 exported.data = node.getData();
+                if(node.getStyle('color-type') && node.type =='main'){
+                    exported.style = node.getNodeStyle();
+                }
                 var childNodes = node.getChildren();
                 exported.children = [];
+
                 for (var i = 0; i < childNodes.length; i++) {
                     exported.children.push(exportNode(childNodes[i]));
                 }
+
                 return exported;
             }
 
@@ -197,6 +202,7 @@ define(function(require, exports, module) {
                 node.setData(field, data[field]);
             }
             if (json.style) {
+                //todo 将样式绑定到node的nodeStyle上
                 node.setNodeStyle(json.style);
             }
             var childrenTreeData = json.children || [];
@@ -321,6 +327,7 @@ define(function(require, exports, module) {
             this._fire(new MinderEvent('beforeimport', params));
 
             return Promise.resolve(protocol.decode(data, this, option)).then(function(json) {
+                // todo 将数据转为json数据
                 minder.importJson(json);
                 return json;
             });

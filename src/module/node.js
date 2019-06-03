@@ -19,6 +19,7 @@ define(function(require, exports, module) {
     var AppendChildCommand = kity.createClass('AppendChildCommand', {
         base: Command,
         execute: function(km, text) {
+            localStorage.setItem('isCreateNode', 'true');
             var parent = km.getSelectedNode();
             if (!parent) {
                 return null;
@@ -33,6 +34,15 @@ define(function(require, exports, module) {
                 parent.renderTree();
             }
             km.layout(600);
+            // todo 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
+            var randomColor =km.colorPool[Math.floor(Math.random()*km.colorPool.length)];
+            if(node.getStyle('color-type')){
+                var json = {};
+                json.data = {'text': text?text:''};
+                json.style = {'connect-color': randomColor};// 创建 km 实例
+                km.importNode(node, json);
+                // km.exportJson();
+            }
         },
         queryState: function(km) {
             var selectedNode = km.getSelectedNode();
@@ -51,6 +61,7 @@ define(function(require, exports, module) {
     var AppendSiblingCommand = kity.createClass('AppendSiblingCommand', {
         base: Command,
         execute: function(km, text) {
+            localStorage.setItem('isCreateNode', 'true');
             var sibling = km.getSelectedNode();
             var parent = sibling.parent;
             if (!parent) {
@@ -61,6 +72,16 @@ define(function(require, exports, module) {
             km.select(node, true);
             node.render();
             km.layout(600);
+            // todo 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
+            var randomColor =km.colorPool[Math.floor(Math.random()*km.colorPool.length)];
+            if(node.getStyle('color-type')){
+                var json = {};
+                json.data = {'text': text?text:''};
+                json.style = {'connect-color': randomColor};// 创建 km 实例
+
+                km.importNode(node, json);
+                // km.exportJson();
+            }
         },
         queryState: function(km) {
             var selectedNode = km.getSelectedNode();
