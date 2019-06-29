@@ -19,7 +19,7 @@ define(function(require, exports, module) {
             "root-space": 10,
             "root-shadow": "rgba(0, 0, 0, .25)",
             "main-color": "#333",
-            "main-background": "#a4c5c0",
+            "main-background": "#fff",
             "main-stroke": "#a4c5c0",
             "main-font-size": 16,
             "main-padding": compact ? [ 15, 15 ] : [ 6, 20 ],
