@@ -3098,14 +3098,14 @@ _p[27] = {
                     }
                     for (j = 0; j < nodes.length; j++) {
                         // TODO 若主题为colourful,且为初始化渲染的标签,将线条渲染为随机的彩色，若不是主题colourful则用配置项默认颜色
-                        if (nodes[j].type == "main" && !renderer.getRenderShape()) {
+                        if (nodes[j].type === "main" && !renderer.getRenderShape()) {
                             if (nodes[j].getStyle("color-type")) {
                                 // var isChangeText = false;
                                 // 若当前nodes有数值，则当前编辑节点文本时候不重新渲染线条颜色
                                 if (localStorage.getItem("nodes")) {
                                     return;
                                 }
-                                if (j == nodes.length - 2) {
+                                if (j === nodes.length - 2) {
                                     var nodeList = [];
                                     for (var k = 0; k < nodes.length; k++) {
                                         nodeList.push(nodes[k].data.text);
@@ -3114,9 +3114,7 @@ _p[27] = {
                                 }
                                 var randomColor = this.colorPool[Math.floor(Math.random() * this.colorPool.length)];
                                 var json = {};
-                                json.data = {
-                                    text: nodes[j].data.text ? nodes[j].data.text : ""
-                                };
+                                json.data = JSON.parse(JSON.stringify(nodes[j].data));
                                 json.style = {
                                     "connect-color": randomColor
                                 };
@@ -3126,9 +3124,7 @@ _p[27] = {
                                 // 若为其他主题则清空nodes，且去掉绑定在nodeStyle上的样式
                                 localStorage.setItem("nodes", []);
                                 var json = {};
-                                json.data = {
-                                    text: nodes[j].data.text ? nodes[j].data.text : ""
-                                };
+                                json.data = JSON.parse(JSON.stringify(nodes[j].data));
                                 json.style = {};
                                 // 创建 km 实例
                                 this.importNode(nodes[j], json);
