@@ -80,6 +80,7 @@ define(function(require, exports, module) {
     require('./layout/tianpan');
 
     require('./theme/default');
+    require('./theme/branch');
     require('./theme/colourful');
     require('./theme/snow');
     require('./theme/fresh');
@@ -90,6 +91,8 @@ define(function(require, exports, module) {
 
     require('./connect/arc');
     require('./connect/arc_tp');
+    require('./connect/arc_branch');
+    require('./connect/bezier_branch');
     require('./connect/bezier');
     require('./connect/fish-bone-master');
     require('./connect/l');

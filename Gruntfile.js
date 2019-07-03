@@ -2,7 +2,7 @@
 
 var path = require('path');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     'use strict';
 
     // These plugins provide necessary tasks.
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
         },
 
         // watch
-        watch: {
+        watch      : {
             files: 'src/**',
             tasks: ['build']
         },
@@ -50,12 +50,12 @@ module.exports = function(grunt) {
         browserSync: {
             bsFiles: {
                 dist: 'dist/css/*.css',
-                src: 'src/**'
+                src : 'src/**'
             },
             options: {
                 server: {
-                    baseDir: './',
-                    index: 'dev.html',
+                    baseDir  : './',
+                    index    : 'dev.html',
                     watchTask: true
                 }
             }
@@ -64,12 +64,12 @@ module.exports = function(grunt) {
         // resolve dependence
         dependence: {
             options: {
-                base: 'src',
+                base    : 'src',
                 entrance: 'expose-kityminder'
             },
-            merge: {
+            merge  : {
                 files: [{
-                    src: 'src/**/*.js',
+                    src : 'src/**/*.js',
                     dest: 'dist/kityminder.core.js'
                 }]
             }
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
                 banner: banner + '(function () {\n',
                 footer: expose + '})();'
             },
-            build: {
+            build  : {
                 files: {
                     'dist/kityminder.core.js': ['dist/kityminder.core.js']
                 }
@@ -89,19 +89,20 @@ module.exports = function(grunt) {
         },
 
         uglify: {
-            options: {
-                banner: banner
+            options : {
+                banner   : banner,
+                sourceMap: true
             },
             minimize: {
-                src: 'dist/kityminder.core.js',
+                src : 'dist/kityminder.core.js',
                 dest: 'dist/kityminder.core.min.js'
             }
         },
 
         copy: {
             dist: {
-                src: 'src/kityminder.css',
-                dest: "dist/kityminder.core.css"
+                src : 'src/kityminder.css',
+                dest: 'dist/kityminder.core.css'
             }
         }
 

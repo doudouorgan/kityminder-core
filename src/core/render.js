@@ -156,7 +156,7 @@ define(function (require, exports, module) {
                 }
 
                 for (j = 0; j < nodes.length; j++) {
-                    // TODO 若主题为colourful,且为初始化渲染的标签,将线条渲染为随机的彩色，若不是主题colourful则用配置项默认颜色
+                    // 若主题为colourful,且为初始化渲染的标签,将线条渲染为随机的彩色，若不是主题colourful则用配置项默认颜色
                     if (nodes[j].type === 'main' && !renderer.getRenderShape()) {
                         if (nodes[j].getStyle('color-type')) {
                             // var isChangeText = false;
@@ -172,7 +172,8 @@ define(function (require, exports, module) {
                                 localStorage.setItem('nodes', JSON.stringify(nodeList));
                             }
 
-                            var randomColor = this.colorPool[Math.floor(Math.random() * this.colorPool.length)];
+                            // 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
+                            var randomColor = km.getRandomColor();
                             var json = {};
                             json.data = JSON.parse(JSON.stringify(nodes[j].data));
                             json.style = {

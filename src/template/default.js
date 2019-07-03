@@ -31,8 +31,12 @@ define(function(require, exports, module) {
         },
 
         getConnect: function(node) {
-            if (node.getLevel() == 1) return 'arc';
-            return 'under';
+            if (node.getLevel() == 1) {
+                // return 'arc'
+                return 'arc_branch';
+            } else {
+                return 'under';
+            }
         }
     });
 });

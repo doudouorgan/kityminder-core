@@ -20,30 +20,34 @@ define(function (require, exports, module) {
         this.node.setAttribute('markerUnits', 'userSpaceOnUse');
     });
 
-    connect.register('arc', function (node, parent, connection, width, color) {
+    connect.register('arc_branch', function (node, parent, connection, width, color) {
 
         var box = node.getLayoutBox(),
             pBox = parent.getLayoutBox();
 
-        var start, end, vector;
+        var offsetWidth = 15;
+
+        var end, vector;
         var abs = Math.abs;
         var pathData = [];
         var side = box.x > pBox.x ? 'right' : 'left';
 
         node.getMinder().getPaper().addResource(connectMarker);
 
-        start = new kity.Point(pBox.cx, pBox.cy);
+        var start1 = new kity.Point(pBox.cx - offsetWidth, pBox.cy),
+            start2 = new kity.Point(pBox.cx + offsetWidth, pBox.cy);
         end = side === 'left' ?
             new kity.Point(box.right + node.getStyle('main-connect-margin') || 2, box.cy) :
             new kity.Point(box.left - node.getStyle('main-connect-margin') || 2, box.cy);
 
-        vector = kity.Vector.fromPoints(start, end);
-        pathData.push('M', start);
+        vector = kity.Vector.fromPoints(new kity.Point(pBox.cx, pBox.cy), end);
+        pathData.push('M', start1);
         pathData.push('A', abs(vector.x), abs(vector.y), 0, 0, (vector.x * vector.y > 0 ? 0 : 1), end);
+        pathData.push('A', abs(vector.x), abs(vector.y), 0, 0, (vector.x * vector.y > 0 ? 1 : 0), start2.x, start2.y);
+        pathData.push('Z');
 
         connection.setMarker(connectMarker);
         connectMarker.dot.fill(node.getStyle('color-type') ? 'transparent' : color);
-
-        connection.setPathData(pathData);
+        connection.setPathData(pathData).fill(connection.node.getAttribute('stroke'));
     });
 });

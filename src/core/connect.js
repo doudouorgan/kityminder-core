@@ -91,10 +91,20 @@ define(function (require, exports, module) {
             var strokeColor = node.getStyle('connect-color') || 'white',
                 strokeWidth = node.getStyle('connect-width') || 2;
 
-            // TODO:子节点颜色按主节点分配
+            // 子节点颜色按主节点分配
             var nodeStyle = node.getMain(node).getNodeStyle();
             if (nodeStyle) {
                 strokeColor = nodeStyle['connect-color'] || strokeColor;
+                if (node.getType() === 'main') {
+                    // 为主节点线框加上颜色
+                    node._renderers && node._renderers.constructor === Array && node._renderers.forEach(function (renderer) {
+                        // 判断当前上下文是否应该渲染
+                        if (renderer.shouldRender(node) && renderer.__KityClassName === 'OutlineRenderer') {
+                            var outline = renderer.getRenderShape();
+                            outline.stroke(strokeColor, 2);
+                        }
+                    });
+                }
                 if (node.getLevel() > 1) {
                     strokeWidth = nodeStyle['connect-width'] || strokeWidth;
                 } else {
@@ -102,7 +112,6 @@ define(function (require, exports, module) {
                 }
             }
             connection.stroke(strokeColor, strokeWidth);
-
 
             provider(node, parent, connection, strokeWidth, strokeColor);
             if (strokeWidth % 2 === 0) {

@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function (require, exports, module) {
     var kity = require('../core/kity');
     var utils = require('../core/utils');
 
@@ -17,8 +17,8 @@ define(function(require, exports, module) {
      *   -1: 当前没有选中的节点
      */
     var AppendChildCommand = kity.createClass('AppendChildCommand', {
-        base: Command,
-        execute: function(km, text) {
+        base      : Command,
+        execute   : function (km, text) {
             localStorage.setItem('isCreateNode', 'true');
             var parent = km.getSelectedNode();
             if (!parent) {
@@ -34,17 +34,19 @@ define(function(require, exports, module) {
                 parent.renderTree();
             }
             km.layout(600);
-            // todo 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
-            var randomColor =km.colorPool[Math.floor(Math.random()*km.colorPool.length)];
-            if(node.getStyle('color-type')){
+
+            if (node.getStyle('color-type')) {
+                // 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
+                var randomColor = km.getRandomColor();
                 var json = {};
-                json.data = {'text': text?text:''};
+
+                json.data = {'text': text ? text : ''};
                 json.style = {'connect-color': randomColor};// 创建 km 实例
                 km.importNode(node, json);
                 // km.exportJson();
             }
         },
-        queryState: function(km) {
+        queryState: function (km) {
             var selectedNode = km.getSelectedNode();
             return selectedNode ? 0 : -1;
         }
@@ -59,8 +61,8 @@ define(function(require, exports, module) {
      *   -1: 当前没有选中的节点
      */
     var AppendSiblingCommand = kity.createClass('AppendSiblingCommand', {
-        base: Command,
-        execute: function(km, text) {
+        base      : Command,
+        execute   : function (km, text) {
             localStorage.setItem('isCreateNode', 'true');
             var sibling = km.getSelectedNode();
             var parent = sibling.parent;
@@ -72,18 +74,18 @@ define(function(require, exports, module) {
             km.select(node, true);
             node.render();
             km.layout(600);
-            // todo 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
-            var randomColor =km.colorPool[Math.floor(Math.random()*km.colorPool.length)];
-            if(node.getStyle('color-type')){
+            if (node.getStyle('color-type')) {
+                // 若主题为colorful则将随机生成的颜色和文本绑定到新生成的节点上
+                var randomColor = km.getRandomColor();
                 var json = {};
-                json.data = {'text': text?text:''};
+                json.data = {'text': text ? text : ''};
                 json.style = {'connect-color': randomColor};// 创建 km 实例
 
                 km.importNode(node, json);
                 // km.exportJson();
             }
         },
-        queryState: function(km) {
+        queryState: function (km) {
             var selectedNode = km.getSelectedNode();
             return selectedNode ? 0 : -1;
         }
@@ -97,13 +99,13 @@ define(function(require, exports, module) {
      *   -1: 当前没有选中的节点
      */
     var RemoveNodeCommand = kity.createClass('RemoverNodeCommand', {
-        base: Command,
-        execute: function(km) {
+        base      : Command,
+        execute   : function (km) {
             var nodes = km.getSelectedNodes();
             var ancestor = MinderNode.getCommonAncestor.apply(null, nodes);
             var index = nodes[0].getIndex();
 
-            nodes.forEach(function(node) {
+            nodes.forEach(function (node) {
                 if (!node.isRoot()) km.removeNode(node);
             });
             if (nodes.length == 1) {
@@ -114,24 +116,24 @@ define(function(require, exports, module) {
             }
             km.layout(600);
         },
-        queryState: function(km) {
+        queryState: function (km) {
             var selectedNode = km.getSelectedNode();
             return selectedNode && !selectedNode.isRoot() ? 0 : -1;
         }
     });
 
     var AppendParentCommand = kity.createClass('AppendParentCommand', {
-        base: Command,
-        execute: function(km, text) {
+        base      : Command,
+        execute   : function (km, text) {
             var nodes = km.getSelectedNodes();
 
-            nodes.sort(function(a, b) {
+            nodes.sort(function (a, b) {
                 return a.getIndex() - b.getIndex();
             });
             var parent = nodes[0].parent;
 
             var newParent = km.createNode(text, parent, nodes[0].getIndex());
-            nodes.forEach(function(node) {
+            nodes.forEach(function (node) {
                 newParent.appendChild(node);
             });
             newParent.setGlobalLayoutTransform(nodes[nodes.length >> 1].getGlobalLayoutTransform());
@@ -139,7 +141,7 @@ define(function(require, exports, module) {
             km.select(newParent, true);
             km.layout(600);
         },
-        queryState: function(km) {
+        queryState: function (km) {
             var nodes = km.getSelectedNodes();
             if (!nodes.length) return -1;
             var parent = nodes[0].parent;
@@ -151,20 +153,20 @@ define(function(require, exports, module) {
         }
     });
 
-    Module.register('NodeModule', function() {
+    Module.register('NodeModule', function () {
         return {
             commands: {
-                'AppendChildNode': AppendChildCommand,
+                'AppendChildNode'  : AppendChildCommand,
                 'AppendSiblingNode': AppendSiblingCommand,
-                'RemoveNode': RemoveNodeCommand,
-                'AppendParentNode': AppendParentCommand
+                'RemoveNode'       : RemoveNodeCommand,
+                'AppendParentNode' : AppendParentCommand
             },
 
             'commandShortcutKeys': {
                 'appendsiblingnode': 'normal::Enter',
-                'appendchildnode': 'normal::Insert|Tab',
-                'appendparentnode': 'normal::Shift+Tab|normal::Shift+Insert',
-                'removenode': 'normal::Del|Backspace'
+                'appendchildnode'  : 'normal::Insert|Tab',
+                'appendparentnode' : 'normal::Shift+Tab|normal::Shift+Insert',
+                'removenode'       : 'normal::Del|Backspace'
             }
         };
     });

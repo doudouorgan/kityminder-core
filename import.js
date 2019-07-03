@@ -41,6 +41,8 @@
         'src/connect/bezier.js',
         'src/connect/poly.js',
         'src/connect/arc.js',
+        'src/connect/arc_branch.js',
+        'src/connect/bezier_branch.js',
         'src/connect/under.js',
         'src/connect/l.js',
         'src/connect/fish-bone-master.js',
@@ -52,6 +54,7 @@
         'src/theme/fresh.js',
         'src/theme/fish.js',
         'src/theme/wire.js',
+        'src/theme/branch.js',
 
         /* 模板 */
         'src/template/default.js',
