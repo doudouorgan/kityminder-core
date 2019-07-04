@@ -76,10 +76,7 @@ define(function(require, exports, module) {
 
             nextConnection.setMarker(connectMarker);
             connectMarker.dot.fill(color);
-
-            nextConnection.setPathData(pathData);
-
+            nextConnection.setPathData(pathData).fill('none');
         }
-
     });
 });

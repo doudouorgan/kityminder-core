@@ -9,14 +9,14 @@
 define(function (require, exports, module) {
     var template = require('../core/template');
 
-    template.register('right', {
+    template.register('fish-tail', {
         getLayout: function (node) {
             return node.getData('layout') || 'right';
         },
 
         getConnect: function (node) {
             if (node.getLevel() == 1) {
-                return 'arc'
+                return 'bezier_branch';
             } else {
                 return 'bezier';
             }

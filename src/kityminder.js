@@ -80,7 +80,7 @@ define(function(require, exports, module) {
     require('./layout/tianpan');
 
     require('./theme/default');
-    require('./theme/branch');
+    require('./theme/tree-branch');
     require('./theme/colourful');
     require('./theme/snow');
     require('./theme/fresh');
@@ -100,10 +100,12 @@ define(function(require, exports, module) {
     require('./connect/under');
 
     require('./template/default');
+    require('./template/tree-branch');
     require('./template/structure');
     require('./template/filetree');
     require('./template/right');
     require('./template/fish-bone');
+    require('./template/fish-tail');
     require('./template/tianpan');
 
     module.exports = kityminder;

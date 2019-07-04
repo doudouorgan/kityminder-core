@@ -44,7 +44,7 @@
                 <!--{ "data": { "text": "视频", "priority": 3},"style":{"connect-color": "#0076B3"}},-->
                 <!--{ "data": { "text": "地图", "priority": 3},"style":{"connect-color": "#B296C7"}},-->
                 <!--{ "data": { "text": "百科", "priority": 3},"style":{"connect-color": "#662C90"}},-->
-                <!--{ "data": { "text": "更多","hyperlink": "http://www.baidu.com/more" },"style":{"connect-color": "#C1D18A"}}-->
+                <!--{ "data": { "text": "更多"},"style":{"connect-color": "#C1D18A"}}-->
             <!--]-->
         <!--}-->
     <!--}-->
@@ -57,11 +57,12 @@
                 "imageSize": { "width": 270, "height": 129 }
             },
             "children": [
-                 { "data": { "text": "新闻" },"style":{"connect-color": "#FAC6D2"} },
+             { "data": { "text": "新闻" },"style":{"connect-color": "#FAC6D2"} },
                 { "data": { "text": "网页", "priority": 1},"style":{"connect-color": "#F384AE"}},
                 { "data": { "text": "贴吧", "priority": 2},"style":{"connect-color": "#F15A23"}},
                 { "data": { "text": "知道", "priority": 2},"style":{"connect-color": "#C41230"}},
-                { "data": { "text": "音乐", "priority": 3},"style":{"connect-color": "#7DCDC2"}}
+                { "data": { "text": "音乐", "priority": 3},"style":{"connect-color": "#7DCDC2"}},
+                { "data": { "text": "图片", "priority": 3},"style":{"connect-color": "#55BEED"}}
             ]
         }
     }
@@ -83,8 +84,8 @@
         var km = window.km = new Minder();
         km.setup('#minder-view');
         setTimeout(function () {
-            km.execCommand('template', 'right');
-            km.execCommand('theme', 'branch');
+            km.execCommand('template', 'tree-branch');
+            km.execCommand('theme', 'tree-branch');
         }, 1000);
     });
     seajs.use('start');

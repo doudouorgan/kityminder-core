@@ -9,7 +9,7 @@
 define(function(require, exports, module) {
     var template = require('../core/template');
 
-    template.register('default', {
+    template.register('tree-branch', {
 
         getLayout: function(node) {
 
@@ -32,7 +32,7 @@ define(function(require, exports, module) {
 
         getConnect: function(node) {
             if (node.getLevel() == 1) {
-                return 'arc'
+                return 'bezier_branch';
             } else {
                 return 'under';
             }

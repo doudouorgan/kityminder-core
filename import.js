@@ -54,14 +54,16 @@
         'src/theme/fresh.js',
         'src/theme/fish.js',
         'src/theme/wire.js',
-        'src/theme/branch.js',
+        'src/theme/tree-branch.js',
 
         /* 模板 */
         'src/template/default.js',
+        'src/template/tree-branch.js',
         'src/template/structure.js',
         'src/template/filetree.js',
         'src/template/right.js',
         'src/template/fish-bone.js',
+        'src/template/fish-tail.js',
 
         /* 模块 */
         'src/module/node.js',

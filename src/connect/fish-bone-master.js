@@ -28,6 +28,6 @@ define(function(require, exports, module) {
         pathData.push('L', pin.x, pin.y);
 
         connection.setMarker(null);
-        connection.setPathData(pathData);
+        connection.setPathData(pathData).fill('none');
     });
 });

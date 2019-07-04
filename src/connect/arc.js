@@ -43,7 +43,6 @@ define(function (require, exports, module) {
 
         connection.setMarker(connectMarker);
         connectMarker.dot.fill(node.getStyle('color-type') ? 'transparent' : color);
-
-        connection.setPathData(pathData);
+        connection.setPathData(pathData).fill('none');
     });
 });
